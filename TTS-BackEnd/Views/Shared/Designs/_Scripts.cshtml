@@ -1,0 +1,151 @@
+﻿<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/js/adminlte.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="~/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="~/plugins/raphael/raphael.min.js"></script>
+<script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- ChartJS -->
+<script src="~/plugins/chart.js/Chart.min.js"></script>
+
+<!-- Data for overall billable hours donut chart -------------------------------------------------------------------------------------------------------------------------------------------->
+<script>
+    $(function () {
+        //-------------
+        //- DONUT CHART 1-
+        //-------------
+
+        @* Get context with jQuery - using jQuery's .get() method.*@
+
+        var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+        var donutData = {
+            labels: [
+                'Azizul',
+                'Eric',
+                'Hazwani',
+                'Joyce',
+                'Jack',
+            ],
+
+            datasets: [
+                {
+                    data: [700, 500, 400, 600, 300, 100],
+                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                }
+            ]
+        }
+
+        var donutOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+        }
+
+        //Create pie or douhnut chart
+        // You can switch between pie and douhnut using the method below.
+        new Chart(donutChartCanvas, {
+            type: 'doughnut',
+            data: donutData,
+            options: donutOptions
+        })
+
+        //-------------
+        //- BAR CHART 1-
+        //-------------
+
+        var areaChartData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'Billable hours',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: false,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: [@ViewData["TotalData"], 48, 40, 19, 86, 27, 90]
+                },
+                {
+                    label: 'Non-billable hours',
+                    backgroundColor: 'rgba(210, 214, 222, 1)',
+                    borderColor: 'rgba(210, 214, 222, 1)',
+                    pointRadius: false,
+                    pointColor: 'rgba(210, 214, 222, 1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                },
+            ]
+        }
+        var barChartCanvas = $('#barChart').get(0).getContext('2d')
+        var barChartData = $.extend(true, {}, areaChartData)
+        var temp0 = areaChartData.datasets[0]
+        var temp1 = areaChartData.datasets[1]
+        barChartData.datasets[0] = temp1
+        barChartData.datasets[1] = temp0
+
+        var barChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        }
+
+        new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        })
+
+        //-------------
+        //- BAR CHART 2-
+        //-------------
+
+        var areaChartData2 = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'Digital Goods',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: false,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#ffh',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                },
+
+            ]
+        }
+        var barChartCanvas2 = $('#barChart2').get(0).getContext('2d')
+        var barChartData2 = $.extend(true, {}, areaChartData2)
+        var temp0 = areaChartData2.datasets[0]
+
+        barChartData2.datasets[0] = temp1
+
+
+        var barChartOptions2 = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        }
+
+        new Chart(barChartCanvas2, {
+            type: 'bar',
+            data: barChartData2,
+            options: barChartOptions2
+        })
+
+
+    })</script>
+<!-- Data for Donut chart ----------------------------------------------------------------------------------------------------------------------------------------------------->
